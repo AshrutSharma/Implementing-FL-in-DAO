@@ -29,7 +29,7 @@ contract DAOGovernor is
         uint256 _quorumPercentage
     )
         Governor("DAO Governor")
-        GovernorSettings(_votingDelay, _votingPeriod, _proposalThreshold)
+        GovernorSettings(uint48(_votingDelay), uint32(_votingPeriod), _proposalThreshold)
         GovernorVotes(_token)
         GovernorVotesQuorumFraction(_quorumPercentage)
         GovernorTimelockControl(_timelock)

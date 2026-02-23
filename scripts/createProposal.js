@@ -52,7 +52,7 @@ async function main() {
     console.log("Proposal created with ID:", proposalId.toString());
     console.log("Proposal state:", await governor.state(proposalId));
 
-    console.log("\n✅ Proposal created successfully!");
+    console.log("\n Proposal created successfully!");
     console.log("\nNext steps:");
     console.log("1. Wait for voting delay to pass");
     console.log("2. Vote on the proposal");
