@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>F-DAO Federated Learning Demo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-block">
+          <div class="brand-mark">FD</div>
+          <div>
+            <p class="eyebrow">Federated DAO</p>
+            <h1>Proof-of-Learning Console</h1>
+          </div>
+        </div>
+
+        <section class="panel compact">
+          <div class="panel-title">
+            <span>Simulation</span>
+            <span class="status-pill">Ready</span>
+          </div>
+          <div class="stat-grid">
+            <div>
+              <span class="stat-label">Rounds</span>
+              <strong>5</strong>
+            </div>
+            <div>
+              <span class="stat-label">Clients</span>
+              <strong>4</strong>
+            </div>
+            <div>
+              <span class="stat-label">Model</span>
+              <strong>LSTM</strong>
+            </div>
+            <div>
+              <span class="stat-label">Params</span>
+              <strong>53,569</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel compact">
+          <div class="panel-title">
+            <span>Round Control</span>
+            <span id="roundLabel">1 / 5</span>
+          </div>
+          <input id="roundSlider" type="range" min="1" max="5" step="1" value="1" />
+          <div class="button-row">
+            <button class="icon-button" id="prevRound" type="button" aria-label="Previous round" title="Previous round">
+              <span aria-hidden="true">‹</span>
+            </button>
+            <button class="primary-button" id="playDemo" type="button">
+              <span aria-hidden="true">▶</span>
+              Replay
+            </button>
+            <button class="icon-button" id="nextRound" type="button" aria-label="Next round" title="Next round">
+              <span aria-hidden="true">›</span>
+            </button>
+          </div>
+        </section>
+
+        <section class="panel compact">
+          <div class="panel-title">
+            <span>DAO Rule</span>
+            <span class="danger-text">Score &lt; 10 rejected</span>
+          </div>
+          <p class="fine-print">
+            Local data stays private. The DAO only receives proof-of-learning scores, validates the update, and assigns aggregation weight.
+          </p>
+        </section>
+      </aside>
+
+      <section class="main-stage">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Live project demonstration</p>
+            <h2>Federated stock prediction governed by a DAO</h2>
+          </div>
+          <div class="top-actions">
+            <button id="toggleAttacker" class="secondary-button" type="button">Hide attacker impact</button>
+            <button id="resetDemo" class="secondary-button" type="button">Reset</button>
+          </div>
+        </header>
+
+        <section class="metric-strip" aria-label="Current round metrics">
+          <div class="metric-card accent-blue">
+            <span class="metric-label">Global validation MSE</span>
+            <strong id="globalMse">0.00841965</strong>
+            <span id="mseTrend" class="metric-note">after aggregation</span>
+          </div>
+          <div class="metric-card accent-green">
+            <span class="metric-label">Accepted updates</span>
+            <strong id="acceptedCount">3 / 4</strong>
+            <span class="metric-note">thresholded on-chain</span>
+          </div>
+          <div class="metric-card accent-amber">
+            <span class="metric-label">Top governance weight</span>
+            <strong id="topClient">Client 1</strong>
+            <span id="topScore" class="metric-note">99 score</span>
+          </div>
+          <div class="metric-card accent-red">
+            <span class="metric-label">Rejected update</span>
+            <strong id="rejectedClient">Attacker</strong>
+            <span class="metric-note">poisoned AMZN weights</span>
+          </div>
+        </section>
+
+        <section class="workspace-grid">
+          <div class="panel chart-panel">
+            <div class="panel-title">
+              <span>Round Scores</span>
+              <span>Proof-of-learning to DAO</span>
+            </div>
+            <div id="scoreBars" class="score-bars"></div>
+          </div>
+
+          <div class="panel chart-panel">
+            <div class="panel-title">
+              <span>Global Convergence</span>
+              <span>MSE per round</span>
+            </div>
+            <svg id="mseChart" class="line-chart" viewBox="0 0 640 260" role="img" aria-label="Global MSE line chart"></svg>
+          </div>
+
+          <div class="panel wide-panel">
+            <div class="panel-title">
+              <span>Participants</span>
+              <span>Non-IID private stock datasets</span>
+            </div>
+            <div id="clientCards" class="client-grid"></div>
+          </div>
+
+          <div class="panel wide-panel">
+            <div class="panel-title">
+              <span>DAO Transaction Stream</span>
+              <span>Validation, rejection, aggregation</span>
+            </div>
+            <div id="eventLog" class="event-log"></div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

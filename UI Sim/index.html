@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>F-DAO Federated Learning Demo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-block">
+          <div class="brand-mark">FD</div>
+          <div>
+            <p class="eyebrow">Federated DAO</p>
+            <h1>Proof-of-Learning Console</h1>
+          </div>
+        </div>
+
+        <section class="panel compact">
+          <div class="panel-title">
+            <span>Simulation</span>
+            <span class="status-pill" id="simStatus">Ready</span>
+          </div>
+          <div class="stat-grid">
+            <div>
+              <span class="stat-label">Rounds</span>
+              <strong>5</strong>
+            </div>
+            <div>
+              <span class="stat-label">Clients</span>
+              <strong>4</strong>
+            </div>
+            <div>
+              <span class="stat-label">Model</span>
+              <strong id="modelLabel">Linear</strong>
+            </div>
+            <div>
+              <span class="stat-label">Features</span>
+              <strong id="featureCount">5</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel compact">
+          <div class="panel-title">
+            <span>Live Control</span>
+            <span id="roundLabel">0 / 5</span>
+          </div>
+          <input id="roundSlider" type="range" min="0" max="5" step="1" value="0" />
+          <div class="button-row">
+            <button class="icon-button" id="prevRound" type="button" aria-label="Previous round" title="Previous round">
+              <span aria-hidden="true">&lt;</span>
+            </button>
+            <button class="primary-button" id="playDemo" type="button">
+              <span aria-hidden="true">&#9654;</span>
+              Run
+            </button>
+            <button class="icon-button" id="nextRound" type="button" aria-label="Next round" title="Next round">
+              <span aria-hidden="true">&gt;</span>
+            </button>
+          </div>
+        </section>
+
+        <section class="panel compact">
+          <div class="panel-title">
+            <span>DAO Rule</span>
+            <span class="danger-text">Score &lt; 10 rejected</span>
+          </div>
+          <p class="fine-print">
+            Upload numeric CSV data, choose the prediction target, and run the same federated validation flow.
+          </p>
+        </section>
+      </aside>
+
+      <section class="main-stage">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Live project demonstration</p>
+            <h2>Real-time federated training governed by a DAO</h2>
+          </div>
+          <div class="top-actions">
+            <button id="resetDemo" class="secondary-button" type="button">Reset</button>
+          </div>
+        </header>
+
+        <section class="panel data-panel">
+          <div class="panel-title">
+            <span>Dataset</span>
+            <span id="datasetStatus">Default stock-style demo data</span>
+          </div>
+          <div class="data-controls">
+            <label class="file-control">
+              <span>CSV file</span>
+              <input id="csvFile" type="file" accept=".csv,text/csv" />
+            </label>
+            <label>
+              <span>Target</span>
+              <select id="targetColumn">
+                <option value="">Upload CSV first</option>
+              </select>
+            </label>
+            <button id="applyDataset" class="secondary-button" type="button">Use dataset</button>
+            <button id="sampleDataset" class="secondary-button" type="button">Use sample</button>
+          </div>
+        </section>
+
+        <section class="metric-strip" aria-label="Current round metrics">
+          <div class="metric-card accent-blue">
+            <span class="metric-label">Global validation MSE</span>
+            <strong id="globalMse">0.00841965</strong>
+            <span id="mseTrend" class="metric-note">waiting for first aggregation</span>
+          </div>
+          <div class="metric-card accent-green">
+            <span class="metric-label">Accepted updates</span>
+            <strong id="acceptedCount">3 / 4</strong>
+            <span class="metric-note">after DAO validation</span>
+          </div>
+          <div class="metric-card accent-amber">
+            <span class="metric-label">Top governance weight</span>
+            <strong id="topClient">Client 1</strong>
+            <span id="topScore" class="metric-note">waiting for scores</span>
+          </div>
+          <div class="metric-card accent-red">
+            <span class="metric-label">Rejected update</span>
+            <strong id="rejectedClient">Attacker</strong>
+            <span class="metric-note">poisoned update filter</span>
+          </div>
+        </section>
+
+        <section class="workspace-grid">
+          <div class="panel chart-panel">
+            <div class="panel-title">
+              <span>Live Proof Scores</span>
+              <span>Normalized after validation</span>
+            </div>
+            <div id="scoreBars" class="score-bars"></div>
+          </div>
+
+          <div class="panel chart-panel">
+            <div class="panel-title">
+              <span>Global Convergence</span>
+              <span>MSE per round</span>
+            </div>
+            <svg id="mseChart" class="line-chart" viewBox="0 0 640 260" role="img" aria-label="Global MSE line chart"></svg>
+          </div>
+
+          <div class="panel wide-panel">
+            <div class="panel-title">
+              <span>Local Training Progress</span>
+              <span>Private client epochs</span>
+            </div>
+            <div id="trainingGrid" class="training-grid"></div>
+          </div>
+
+          <div class="panel wide-panel detail-panel">
+            <div class="panel-title">
+              <span>Participants</span>
+              <span>Private client partitions</span>
+            </div>
+            <div id="clientCards" class="client-grid"></div>
+          </div>
+
+          <div class="panel wide-panel">
+            <div class="panel-title">
+              <span>DAO Transaction Stream</span>
+              <span>Validation, rejection, aggregation</span>
+            </div>
+            <div id="eventLog" class="event-log"></div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
