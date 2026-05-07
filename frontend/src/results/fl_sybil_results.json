@@ -1,0 +1,96 @@
+{
+  "rounds": [
+    {
+      "round": 1,
+      "participants": [
+        "Client 1",
+        "Client 2",
+        "Client 3",
+        "Attacker"
+      ],
+      "scores": [
+        93,
+        0,
+        0,
+        0
+      ],
+      "global_mse": 0.084
+    },
+    {
+      "round": 2,
+      "participants": [
+        "Client 1",
+        "Client 2",
+        "Client 3",
+        "Attacker"
+      ],
+      "scores": [
+        88,
+        0,
+        0,
+        0
+      ],
+      "global_mse": 0.079
+    },
+    {
+      "round": 3,
+      "participants": [
+        "Client 1",
+        "Client 2",
+        "Client 3",
+        "Attacker"
+      ],
+      "scores": [
+        90,
+        0,
+        0,
+        0
+      ],
+      "global_mse": 0.075
+    },
+    {
+      "round": 4,
+      "participants": [
+        "Client 1",
+        "Client 2",
+        "Client 3",
+        "Attacker"
+      ],
+      "scores": [
+        96,
+        0,
+        0,
+        0
+      ],
+      "global_mse": 0.071
+    },
+    {
+      "round": 5,
+      "participants": [
+        "Client 1",
+        "Client 2",
+        "Client 3",
+        "Attacker"
+      ],
+      "scores": [
+        96,
+        0,
+        0,
+        0
+      ],
+      "global_mse": 0.068
+    }
+  ],
+  "participants": [
+    "Client 1",
+    "Client 2",
+    "Client 3",
+    "Attacker"
+  ],
+  "addresses": {
+    "Client 1": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+    "Client 2": "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
+    "Client 3": "0x90F79bf6EB2c4f870365E785982E1f101E93b906",
+    "Attacker": "0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65"
+  }
+}

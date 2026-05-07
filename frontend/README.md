@@ -1,59 +1,73 @@
-# Frontend
+# React + TypeScript + Vite
 
-Simple web interface for interacting with the DAO.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Features
+Currently, two official plugins are available:
 
-- Connect wallet (MetaMask)
-- View token balance and voting power
-- Delegate voting power
-- Create proposals
-- Vote on proposals
-- View treasury balance
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## Setup
+## React Compiler
 
-1. Update `index.html` with your deployed contract addresses
-2. Add contract ABIs from `artifacts/contracts/`
-3. Serve the HTML file using a local server:
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-```bash
-# Using Python
-python -m http.server 8000
+## Expanding the ESLint configuration
 
-# Using Node.js
-npx http-server
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
+
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
 
-4. Open http://localhost:8000 in your browser
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-## Integration
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-To fully integrate with your deployed contracts:
-
-1. Export contract ABIs from Hardhat artifacts
-2. Update contract addresses in the JavaScript
-3. Implement the contract interaction functions
-4. Test on a local network first
-
-## Advanced Frontend
-
-For a production-ready frontend, consider using:
-
-- **React** or **Next.js** for component-based UI
-- **ethers.js** or **wagmi** for Web3 integration
-- **TailwindCSS** for styling
-- **React Query** for data fetching
-- **ConnectKit** or **RainbowKit** for wallet connection
-
-Example structure:
-```
-frontend/
-├── src/
-│   ├── components/
-│   ├── hooks/
-│   ├── utils/
-│   └── App.jsx
-├── public/
-└── package.json
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```

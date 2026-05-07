@@ -1,112 +1,115 @@
-# DAO Project - Complete Boilerplate
+# Federated DAO (F-DAO) - Implementation Summary
 
-## 📁 Project Structure
+## Project Structure
 
 ```
-DAO/
+Implementing-FL-in-DAO/
 │
-├── 📄 README.md                    # Project overview and setup
-├── 📄 QUICKSTART.md               # 5-minute quick start guide
-├── 📄 CHANGELOG.md                # Version history
-├── 📄 CONTRIBUTING.md             # Contribution guidelines
-├── 📄 LICENSE                     # MIT License
-├── 📄 package.json                # Node.js dependencies
-├── 📄 hardhat.config.js           # Hardhat configuration
-├── 📄 .env.example                # Environment variables template
-├── 📄 .gitignore                  # Git ignore rules
+├── contracts/                  # On-Chain Governance Layer
+│   ├── GovernanceToken.sol     # Merit-based ERC20Votes
+│   ├── DAOGovernor.sol         # Governor for FL parameter updates
+│   └── DAOTreasury.sol         # Treasury for contributor rewards
 │
-├── 📂 contracts/                  # Smart Contracts
-│   ├── GovernanceToken.sol       # ERC20Votes token for governance
-│   ├── DAOGovernor.sol           # Main governor contract
-│   └── DAOTreasury.sol           # Treasury management
+├── ml/                         # Off-Chain Federated Learning Layer
+│   ├── fl_simulation.py        # Core PyTorch FL loop
+│   ├── fdao_bridge.py          # Web3-AI Bridge (Merit Distribution)
+│   └── generate_plots.py       # Result visualization for paper
 │
-├── 📂 scripts/                    # Deployment & Interaction Scripts
-│   ├── deploy.js                 # Main deployment script
-│   ├── createProposal.js         # Create a new proposal
-│   ├── interact.js               # Interact with governor
-│   └── helpers.js                # Utility functions
+├── attacks/                    # Adversarial Stress Testing
+│   ├── adversaries.py          # Malicious logic (Poisoning/Lazy)
+│   ├── simulate_sybil.py       # Sybil attack defense demo
+│   ├── simulate_poisoning.py   # Model poisoning defense demo
+│   ├── simulate_freeriding.py  # Free-rider/Laziness defense demo
+│   └── simulate_labelflipping.py # Data manipulation defense demo
 │
-├── 📂 test/                       # Test Suite
-│   ├── GovernanceToken.test.js   # Token tests
-│   ├── DAOGovernor.test.js       # Governor tests
-│   └── DAOTreasury.test.js       # Treasury tests
+├── scripts/                    # Deployment & Chain Interaction
+│   ├── deploy.js               # Contract deployment
+│   ├── delegate.js             # Voting power activation
+│   ├── checkBalances.js        # Governance Audit Dashboard
+│   └── fundTreasury.js         # Treasury liquidity setup
 │
-├── 📂 config/                     # Configuration Files
-│   ├── README.md                 # Config documentation
-│   └── governance-params.json    # Governance parameters
-│
-├── 📂 docs/                       # Documentation
-│   ├── ARCHITECTURE.md           # System architecture
-│   ├── USAGE.md                  # Detailed usage guide
-│   └── SECURITY.md               # Security best practices
-│
-└── 📂 frontend/                   # Web Interface
-    ├── index.html                # Simple web UI
-    └── README.md                 # Frontend setup guide
+├── test/                       # Smart Contract Test Suite
+└── docs/                       # Research & Architecture Docs
+
 ```
 
-## 🎯 Key Features
+## Key Innovation: The F-DAO Loop
 
-### Smart Contracts
-✅ **GovernanceToken** (ERC20Votes)
-- Voting power through token ownership
-- Delegation support
-- Snapshot-based voting
+### 1. Federated Learning Layer (PyTorch)
 
-✅ **DAOGovernor** (OpenZeppelin Governor)
-- Proposal creation and voting
-- Configurable voting periods
-- Quorum requirements
-- Timelock integration
+* **Privacy-Preserving:** Local training on private investment data.
+* **Aggregation:** FedAvg algorithm for global model synchronization.
+* **Contribution Assessment:** Automated scoring based on local model performance (Loss reduction).
 
-✅ **DAOTreasury**
-- Secure fund management
-- Controlled by governance
-- Event logging
-- Multi-purpose allocations
+### 2. The Merit Bridge (Python/Web3)
 
-✅ **TimelockController** (OpenZeppelin)
-- Delayed execution for security
-- Role-based access control
-- Emergency cancellation
+* **Proof-of-Contribution:** Automatically translates ML scores into on-chain tokens.
+* **Dynamic Governance:** Voting power is *earned* through high-quality training, not just purchased.
 
-### Development Tools
-✅ Hardhat development environment
-✅ Comprehensive test suite (>90% coverage)
-✅ Automated deployment scripts
-✅ Gas reporting
-✅ Contract verification setup
+### 3. Adversarial Resilience (Security Layer)
 
-### Documentation
-✅ Quick start guide (5 minutes)
-✅ Architecture documentation
-✅ Detailed usage guide
-✅ Security best practices
-✅ Contributing guidelines
+* **Byzantine Fault Tolerance:** Filters out poisoned updates before aggregation.
+* **Sybil Resistance:** Diminishing returns for multi-account attackers with low-quality data.
+* **Economic Disincentive:** Gas costs for malicious/lazy updates exceed the token rewards.
 
-## 🚀 Getting Started
+## Experimental Results Summary
 
-### 1. Install
+| Metric | Honest Client | Sybil/Poisoner | Result |
+| --- | --- | --- | --- |
+| **Avg. Reward** | ~7,500 F-DAO | ~200 F-DAO | Meritocratic Success |
+| **Model Impact** | Positive | Zero (Filtered) | Robustness Proven |
+| **Control** | ~78.5% | ~21.5% | No 51% Attack Possible |
+
+## Getting Started
+
+### 1. Setup Environment
+
 ```bash
 npm install
+pip install torch web3 matplotlib numpy
+
 ```
 
-### 2. Compile
-```bash
-npx hardhat compile
-```
+### 2. Deploy Infrastructure
 
-### 3. Test
 ```bash
-npx hardhat test
-```
-
-### 4. Deploy
-```bash
+npx hardhat node
 npx hardhat run scripts/deploy.js --network localhost
+
 ```
 
-## 🏗️ Architecture Overview
+### 3. Run F-DAO Cycle (The Bridge)
+
+```bash
+python ml/fdao_bridge.py
+npx hardhat run scripts/delegate.js --network localhost
+
+```
+
+### 4. Run Security Simulations
+
+```bash
+python attacks/simulate_sybil.py
+python attacks/simulate_poisoning.py
+
+```
+
+### 5. Audit Governance
+
+```bash
+npx hardhat run scripts/checkBalances.js --network localhost
+
+```
+
+## Tech Stack
+
+* **AI/ML:** PyTorch, NumPy
+* **Blockchain:** Hardhat, Solidity 0.8.20, Ethers.js v6
+* **Bridge:** Web3.py
+* **Visuals:** Matplotlib
+
+
+## Architecture Overview
 
 ```
 ┌─────────────────┐
@@ -132,7 +135,7 @@ npx hardhat run scripts/deploy.js --network localhost
                          └──────────────┘
 ```
 
-## 📋 Governance Flow
+## Governance Flow
 
 1. **Token Holder** creates a proposal
 2. **Voting Delay** allows preparation time
@@ -142,7 +145,7 @@ npx hardhat run scripts/deploy.js --network localhost
 6. **Delay Period** for review
 7. **Execution** of approved proposal
 
-## 🔧 Configuration
+## Configuration
 
 Default settings (customizable in `config/governance-params.json`):
 
@@ -152,38 +155,18 @@ Default settings (customizable in `config/governance-params.json`):
 - **Quorum**: 4% of total supply
 - **Timelock Delay**: 3,600 seconds (1 hour)
 
-## 🛠️ Tech Stack
 
-| Component | Technology |
-|-----------|-----------|
-| Smart Contracts | Solidity 0.8.20 |
-| Development | Hardhat |
-| Standards | OpenZeppelin Contracts |
-| Testing | Chai, Mocha |
-| Library | Ethers.js v6 |
-| Frontend | HTML/CSS/JavaScript |
+## Security Features
 
-## 🔐 Security Features
+- Timelock for delayed execution
+- Proposal thresholds to prevent spam
+- Quorum requirements for legitimacy
+- Role-based access control
+- Event logging for transparency
+- OpenZeppelin battle-tested contracts
 
-- ✅ Timelock for delayed execution
-- ✅ Proposal thresholds to prevent spam
-- ✅ Quorum requirements for legitimacy
-- ✅ Role-based access control
-- ✅ Event logging for transparency
-- ✅ OpenZeppelin battle-tested contracts
 
-## 📊 Test Coverage
-
-```
-contracts/
-├── GovernanceToken.sol    ─── 95% coverage
-├── DAOGovernor.sol        ─── 92% coverage
-└── DAOTreasury.sol        ─── 94% coverage
-
-Overall: 93% coverage ✅
-```
-
-## 🎓 Learning Resources
+## Learning Resources
 
 1. **Quick Start**: `QUICKSTART.md`
 2. **Architecture**: `docs/ARCHITECTURE.md`
@@ -191,36 +174,8 @@ Overall: 93% coverage ✅
 4. **Security**: `docs/SECURITY.md`
 5. **Contributing**: `CONTRIBUTING.md`
 
-## 📦 What's Included
 
-### Contracts (3 files)
-- Governance token with voting
-- Governor with timelock
-- Treasury management
-
-### Scripts (4 files)
-- Deployment automation
-- Proposal creation
-- Governance interaction
-- Helper utilities
-
-### Tests (3 files)
-- Token functionality
-- Governor operations
-- Treasury management
-
-### Documentation (5+ files)
-- Architecture guide
-- Usage instructions
-- Security practices
-- Quick start guide
-- Contributing guidelines
-
-### Frontend (2 files)
-- Simple web interface
-- Setup instructions
-
-## 🌟 Next Steps
+## Next Steps
 
 ### For Beginners
 1. Read `QUICKSTART.md`
@@ -242,52 +197,33 @@ Overall: 93% coverage ✅
 4. Mainnet deployment
 5. Contract verification
 
-## 🤝 Contributing
+## Contributing
 
 Contributions welcome! See `CONTRIBUTING.md` for guidelines.
 
-## 📝 License
+## License
 
 MIT License - see `LICENSE` file
 
-## 🆘 Support
+## Support
 
-- 📖 Documentation in `docs/`
-- 🐛 Report issues on GitHub
-- 💬 Community discussions
-- 📧 Contact maintainers
-
-## ✨ Features Roadmap
+- Documentation in `docs/`
+- Report issues on GitHub
+- Community discussions
+- Contact maintainers
 
 ### Current Version (v1.0.0)
-- ✅ Basic governance
-- ✅ Token voting
-- ✅ Treasury management
-- ✅ Timelock security
+- Basic governance
+- Token voting
+- Treasury management
+- Timelock security
 
-### Future Versions
-- 🔲 React frontend
-- 🔲 Snapshot integration
-- 🔲 Multi-token support
-- 🔲 Delegation marketplace
-- 🔲 Mobile app
-- 🔲 L2 deployment
 
-## 📈 Performance
+## Performance
 
 - **Gas Optimized**: Efficient contract design
 - **Scalable**: Handles large token holder base
 - **Secure**: OpenZeppelin standards
 - **Tested**: Comprehensive test coverage
-
-## 🎉 Success!
-
-You now have a complete, production-ready DAO boilerplate!
-
-Start building your decentralized organization today! 🚀
-
----
-
-**Built with ❤️ using OpenZeppelin and Hardhat**
 
 For the latest updates, check `CHANGELOG.md`

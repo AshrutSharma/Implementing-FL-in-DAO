@@ -1,0 +1,152 @@
+[
+  {
+    "date": "2024-04-01",
+    "actual": 170.97,
+    "predicted": 169.99
+  },
+  {
+    "date": "2024-04-02",
+    "actual": 168.83,
+    "predicted": 167.88
+  },
+  {
+    "date": "2024-04-03",
+    "actual": 171.54,
+    "predicted": 172.01
+  },
+  {
+    "date": "2024-04-04",
+    "actual": 170.18,
+    "predicted": 170.11
+  },
+  {
+    "date": "2024-04-05",
+    "actual": 173.01,
+    "predicted": 174.05
+  },
+  {
+    "date": "2024-04-06",
+    "actual": 171.07,
+    "predicted": 170.5
+  },
+  {
+    "date": "2024-04-07",
+    "actual": 169.41,
+    "predicted": 170.56
+  },
+  {
+    "date": "2024-04-08",
+    "actual": 171.73,
+    "predicted": 170.88
+  },
+  {
+    "date": "2024-04-09",
+    "actual": 169.79,
+    "predicted": 169.1
+  },
+  {
+    "date": "2024-04-10",
+    "actual": 168.1,
+    "predicted": 169.19
+  },
+  {
+    "date": "2024-04-11",
+    "actual": 167.48,
+    "predicted": 168.44
+  },
+  {
+    "date": "2024-04-12",
+    "actual": 169.95,
+    "predicted": 169.12
+  },
+  {
+    "date": "2024-04-13",
+    "actual": 172.14,
+    "predicted": 171.95
+  },
+  {
+    "date": "2024-04-14",
+    "actual": 175.05,
+    "predicted": 175.14
+  },
+  {
+    "date": "2024-04-15",
+    "actual": 173.47,
+    "predicted": 174.57
+  },
+  {
+    "date": "2024-04-16",
+    "actual": 171.4,
+    "predicted": 170.86
+  },
+  {
+    "date": "2024-04-17",
+    "actual": 171.29,
+    "predicted": 172.2
+  },
+  {
+    "date": "2024-04-18",
+    "actual": 170.61,
+    "predicted": 170.88
+  },
+  {
+    "date": "2024-04-19",
+    "actual": 168.5,
+    "predicted": 169.1
+  },
+  {
+    "date": "2024-04-20",
+    "actual": 168.76,
+    "predicted": 169.78
+  },
+  {
+    "date": "2024-04-21",
+    "actual": 171.41,
+    "predicted": 171.57
+  },
+  {
+    "date": "2024-04-22",
+    "actual": 173.12,
+    "predicted": 173.73
+  },
+  {
+    "date": "2024-04-23",
+    "actual": 175.73,
+    "predicted": 175.24
+  },
+  {
+    "date": "2024-04-24",
+    "actual": 178.52,
+    "predicted": 178.82
+  },
+  {
+    "date": "2024-04-25",
+    "actual": 176.49,
+    "predicted": 176.15
+  },
+  {
+    "date": "2024-04-26",
+    "actual": 174.47,
+    "predicted": 174.95
+  },
+  {
+    "date": "2024-04-27",
+    "actual": 177.31,
+    "predicted": 176.18
+  },
+  {
+    "date": "2024-04-28",
+    "actual": 178.77,
+    "predicted": 178.4
+  },
+  {
+    "date": "2024-04-29",
+    "actual": 179.94,
+    "predicted": 179.89
+  },
+  {
+    "date": "2024-04-30",
+    "actual": 180.69,
+    "predicted": 179.67
+  }
+]
